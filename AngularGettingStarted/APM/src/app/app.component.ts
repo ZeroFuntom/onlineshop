@@ -2,12 +2,24 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'pm-root',
-  template: `<div><h1>{{pageTitle}}</h1>
-		          <pm-products></pm-products>
-	          </div>`
+  template: `
+  <div>
+	<nav class = 'navbar navbar-default'>
+		<div class = 'container-fluid'>
+			<a class = 'navbar-brad'> {{ pageTitle }} </a>
+			<ul class = 'nav navbar-nav'>
+				<li> <a [routerLink] = "['/welcome']"> Home </a> </li>
+				<li> <a [routerLink] = "['/products']"> Product </a> </li>
+			</ul>
+		</div>
+	</nav>
+	<div class = 'container'>
+		<router-outlet></router-outlet>
+	</div>
+</div>
+`
 })
 
-// tslint:disable-next-line:one-line
 export class AppComponent{
   pageTitle: string = 'Pandas Product Management';
 }
