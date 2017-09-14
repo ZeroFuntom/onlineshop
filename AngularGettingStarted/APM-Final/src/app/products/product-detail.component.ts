@@ -33,4 +33,8 @@ export class ProductDetailComponent implements OnInit {
     this._router.navigate(['/products']);
   }
 
+  shoppingCart(): void {
+    this._router.navigate(['/shoppingCart']);
+  }
+
 }
