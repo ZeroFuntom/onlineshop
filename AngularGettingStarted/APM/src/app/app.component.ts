@@ -10,7 +10,7 @@ import {Component} from '@angular/core';
 			<ul class = 'nav navbar-nav'>
 				<li> <a [routerLink] = "['/welcome']"> Home </a> </li>
 				<li> <a [routerLink] = "['/products']"> Product </a> </li>
-				<li> <a [routerLink] = "['/user']"> Create User </a> </li>
+				<li> <a [routerLink] = "['/createUser']"> Create User </a> </li>
 			</ul>
 		</div>
 	</nav>
@@ -22,5 +22,5 @@ import {Component} from '@angular/core';
 })
 
 export class AppComponent{
-  pageTitle: string = 'Pandas Product Management';
+ // pageTitle: string = 'Pandas Product Management';
 }
