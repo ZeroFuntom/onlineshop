@@ -1,1 +1,56 @@
-Hello
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body">
+        <form action="createUser.component.html">
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            Form of Address:<br>
+            <form>
+                <input type="radio" name="gender"> Mr.
+                <input type="radio" name="gender"> Mrs.
+                <input type="radio" name="gender"> Other
+            </form>
+            First Name:<br>
+            <input type="text" name="firsname">
+            <br>
+            Last Name:<br>
+            <input type="text" name="lastname">
+            <br>
+            Address:<br>
+            <input type="text" name="address">
+            <br>
+            City:<br>
+            <input type="text" name="city">
+            <br>
+            ZIP Code:<br>
+            <input type="number" name="zipcode">
+            <br>
+            Country:<br>
+                <select name="country">
+                    <option value="United States">United States</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="New Zealand">New Zealand</option>
+                </select>
+            <br>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            E-Mail:<br>
+            <input type="email" name="email">
+            <br>
+            Password:<br>
+            <input type="password" name="password">
+            <br>
+            Confirm Password:<br>
+            <input type="password" name="confirmpassword">
+            <br>
+        </div>        
+
+        <input type="submit" value="Create Profile" name="createprofile" style="margin-top: 100px; margin-left: 14px;" required>
+
+        </form>
+    </div>
+</div>
