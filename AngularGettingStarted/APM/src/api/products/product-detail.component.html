@@ -11,6 +11,12 @@
         [title]='product.productName'
         [style.width.px]='imageWidth'
         [style.margin.px]='imageMargin'/>
+
+        <div zoom2 big="SelectedItem.big" tiny="SelectedItem.tiny" small="SelectedItem.small" alt="" title="SelectedItem.title"></div>
+        <div ng-repeat="item in ZoomItems" style="disaplay:block;" >
+            <img src="{{item.tiny}}" alt="{{item.alt}}" ng-click="ThumbnailClicked(item)" />
+        </div>
+
     </div>
 
     <div class="col-lg-4 col-md-4 col-sm-6">
@@ -57,7 +63,7 @@
       <i class="glyphicon glyphicon-chevron-left"></i> Back
     </a>
 
-    <a class="btn btn-default" (click) = "shoppingCart()" style="width:120px">
+    <a class="btn btn-default" (click) = "shoppingCart()" style="width:120px" style="float: right; margin-bottom: 50px;">
         <i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart
     </a>
     
