@@ -1,3 +1,8 @@
+select{
+    width: 173px;
+    height: 27px;
+}
+
 div.panel-heading {
     font-size: x-large;
     background-color: #42A37C;
@@ -21,6 +26,12 @@ div.panel-heading[_ngcontent-c0] {
     border: transparent;
 }
 
-div.container-fluid{
-    font-family: Poor Richard;
+div{
+    font-family: Leelawadee;
+}
+
+input.ng-invalid {
+    border-color: #F17D7D;
+    border-style:solid;
+    border-width:1px;  
 }

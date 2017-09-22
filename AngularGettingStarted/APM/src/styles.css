@@ -1,9 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 li {
     font-size: large;
-    background: green;
 }
 
 div.panel-heading {
    font-size: x-large;
+}
+
+body{
+    background-image: url("assets/images/wood.png");
+}
+
+div.panel-heading {
+    font-size: x-large;
+    background-color: #42A37C;
+    font-family: Poor Richard;
+ }
+
+ a {
+    color: #42A37C;
+    text-decoration: none;
+}
+
+.panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: transparent;
+}
+
+div.panel-heading[_ngcontent-c0] {
+    font-size: x-large;
+    background-color: #42A37C;
+    border: transparent;
 }

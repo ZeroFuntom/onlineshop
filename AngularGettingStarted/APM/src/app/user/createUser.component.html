@@ -3,29 +3,28 @@
         {{pageTitle}}
     </div>
     <div class="panel-body">
-        <form action="createUser.component.html">
-
+        <form action="createUser.component.html" #f="ngForm">
         <div class="col-lg-6 col-md-6 col-sm-6">
             Form of Address:<br>
-            <form>
+            <form required>
                 <input type="radio" name="gender"> Mr.
                 <input type="radio" name="gender"> Mrs.
                 <input type="radio" name="gender"> Other
             </form>
             First Name:<br>
-            <input type="text" name="firsname">
+            <input type="text" ngModel name="firstname" required firstname>
             <br>
             Last Name:<br>
-            <input type="text" name="lastname">
+            <input type="text" ngModel name="lastname" required lastname>
             <br>
             Address:<br>
-            <input type="text" name="address">
+            <input type="text" ngModel name="address" required address>
             <br>
             City:<br>
-            <input type="text" name="city">
+            <input type="text" ngModel name="city" required city>
             <br>
             ZIP Code:<br>
-            <input type="number" name="zipcode">
+            <input type="number" ngModel name="zipcode" required zipcode>
             <br>
             Country:<br>
                 <select name="country">
@@ -36,21 +35,21 @@
                 </select>
             <br>
         </div>
-
         <div class="col-lg-6 col-md-6 col-sm-6">
-            E-Mail:<br>
-            <input type="email" name="email">
-            <br>
+
+                E-Mail:<br>
+                <input type="email" ngModel name="email" required email>
+                <br>
+
             Password:<br>
-            <input type="password" name="password">
+            <input type="password" name="password" ngModel name="password" required password>
             <br>
             Confirm Password:<br>
-            <input type="password" name="confirmpassword">
+            <input type="password" name="confirmpassword" ngModel name="confirmpassword" required confirmpassword>
             <br>
-        </div>        
-
-        <input type="submit" value="Create Profile" name="createprofile" style="margin-top: 100px; margin-left: 14px;" required>
-
+                <p style="padding-top: 50px;">{{f.valid?' ':'Invalid Inputs!'}}</p>
+        </div>
+        <input [disabled]="!f.valid" type="submit" value="Create Profile" name="createprofile" style="margin-top: 75px; margin-left: 14px;" required>
         </form>
     </div>
 </div>

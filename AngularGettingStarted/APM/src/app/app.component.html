@@ -3,8 +3,9 @@
 		<div class = 'container-fluid'>
 			<a class = 'navbar-brad'> {{ pageTitle }} </a>
 			<ul class = 'nav navbar-nav'>
+				<li> <img src="assets/images/logo.png" height="50px" [routerLink] = "['/welcome']" style="cursor:pointer"></li>
 				<li> <a [routerLink] = "['/welcome']"> Home </a> </li>
-				<li> <a [routerLink] = "['/products']"> Product </a> </li>
+				<li> <a [routerLink] = "['/products']"> Products </a> </li>
 				<li> <a [routerLink] = "['/user']"> Create User </a> </li>
 			</ul>
 		</div>

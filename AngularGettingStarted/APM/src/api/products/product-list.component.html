@@ -17,7 +17,7 @@
             </div>
             <div class="table-responsive">
                 <table class="table"
-                    *ngIf="products">   <!--"&& Products.lenght" -> add beside products-->
+                    *ngIf="products">
                     <thead>
                         <tr>
                             <th>
@@ -28,7 +28,7 @@
                             </th>
                             <th >Product</th>
                             <th>Code</th>
-                            <th>Available</th>
+                            <th>Available Since</th>
                             <th>Price</th>
                             <th>5 Star Rating</th>
                         </tr>
@@ -36,11 +36,18 @@
                     <tbody>
                         <tr *ngFor="let product of filteredProducts">
                             <td>
+
+                                <div class="container">
                                 <img *ngIf='showImage' 
                                     [src]='product.imageUrl'
                                     [title]='product.productName'
                                     [style.width.px]='imageWidth'
                                     [style.margin.px]='imageMargin'>
+                                    <div class="overlay" [routerLink] = "['/products', product.productId]" style="cursor:pointer">
+                                        <div class="text">View Me!</div>
+                                    </div>
+                                </div>
+
                             </td>
                             <td><a [routerLink] = "['/products', product.productId]">
                                 {{ product.productName }}</a></td>
