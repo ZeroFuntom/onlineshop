@@ -7,5 +7,9 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 })
 
 export class CreateUserComponent {
-        public pageTitle: string = 'Create a new User-Profile';
+    public pageTitle: string = 'Create a new User-Profile';
+
+    createUser = function(){
+        alert('Hello! ');
+    };
 }
