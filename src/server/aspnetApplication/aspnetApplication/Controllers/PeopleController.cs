@@ -5,11 +5,9 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
-using aspnetApplication;
 using aspnetApplication.Models;
 
 namespace aspnetApplication.Controllers
@@ -32,17 +30,11 @@ namespace aspnetApplication.Controllers
 
         // GET: api/People/5
         [HttpGet]
-        [ResponseType(typeof(Person))]
-        public async Task<IHttpActionResult> GetPerson(int id)
+        public string Get(int Id, string PersonName, int HobbyId)
         {
-            Person person = await db.People.FindAsync(id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(person);
+            return PersonName;
         }
+        
 
         // PUT: api/People/5
         [HttpPut]

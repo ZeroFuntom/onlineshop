@@ -15,6 +15,7 @@ namespace aspnetApplication.Controllers
 
         // GET: api/Hobbies
         [HttpGet]
+        [ResponseType(typeof(PersonDto))]
         public IQueryable<HobbyDto> GetHobbies()
         {
             return db.Hobbies.Select(p => new HobbyDto
