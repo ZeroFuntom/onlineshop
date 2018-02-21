@@ -15,4 +15,10 @@ export class AppService {
             return r.json();
         });
     }
+
+    public getHobbies(): Observable<IHobby[]> {
+        return this._http.get(this.apiUrl).map((r) => {
+            return r.json();
+        });
+    }
 }

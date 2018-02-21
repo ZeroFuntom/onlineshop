@@ -15,9 +15,13 @@ namespace aspnetApplication.Controllers
 
         // GET: api/Hobbies
         [HttpGet]
-        public IQueryable<Hobby> GetHobbies()
+        public IQueryable<HobbyDto> GetHobbies()
         {
-            return db.Hobbies;
+            return db.Hobbies.Select(p => new HobbyDto
+            {
+                Id = p.Id,
+                HobbyName = p.HobbyName
+            });
         }
 
         // GET: api/Hobbies/5

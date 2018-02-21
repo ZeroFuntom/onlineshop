@@ -1,10 +1,8 @@
 interface IHobby {
-    label: string;
+    Id: number;
+    HobbyName: string;
 }
 
 function HobbyLabel(labelledObj: IHobby) {
-    console.log(labelledObj.label);
+    console.log(labelledObj.HobbyName);
 }
-
-let HobbyObj = {size: 10, label: 'My Hobby'};
-HobbyLabel(HobbyObj);
