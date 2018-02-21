@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2027
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtosProjectAPI", "AtosProjectAPI\AtosProjectAPI.csproj", "{67D5FBE6-5F39-4439-88D2-79C42E7220C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtosProjectModel", "AtosProjectModel\AtosProjectModel.csproj", "{8DA59BC7-2EF2-4119-8D41-FA6F7AAF9E61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67D5FBE6-5F39-4439-88D2-79C42E7220C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D5FBE6-5F39-4439-88D2-79C42E7220C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D5FBE6-5F39-4439-88D2-79C42E7220C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D5FBE6-5F39-4439-88D2-79C42E7220C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DA59BC7-2EF2-4119-8D41-FA6F7AAF9E61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DA59BC7-2EF2-4119-8D41-FA6F7AAF9E61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DA59BC7-2EF2-4119-8D41-FA6F7AAF9E61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DA59BC7-2EF2-4119-8D41-FA6F7AAF9E61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {245FEB69-3D2A-4002-A3B0-699B54ECBB24}
+	EndGlobalSection
+EndGlobal
