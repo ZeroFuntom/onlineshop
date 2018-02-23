@@ -9,8 +9,9 @@ import { AppService } from './app.service';
 
 export class AppComponent {
 
-  hobbylist: IHobby[];
+  public hobbylist: IHobby[];
   public list: IPerson[];
+  public hobbyperson: IHobbyPerson[];
 
   constructor(appService: AppService) {
     appService.getPeople().do((list) => {
@@ -19,6 +20,10 @@ export class AppComponent {
 
     appService.getHobbies().do((hobbylist) => {
       this.hobbylist = hobbylist;
+    }).subscribe();
+
+    appService.getHobbiesPeople().do((hobbyperson) => {
+      this.hobbyperson = hobbyperson;
     }).subscribe();
   }
 

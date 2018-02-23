@@ -24,17 +24,34 @@ namespace aspnetApplication.Controllers
             {
                 Id = p.Id,
                 PersonName = p.PersonName,
-                HobbyId = p.HobbyId ?? 0
+                HobbyId = p.HobbyId
             });
         }
 
         // GET: api/People/5
         [HttpGet]
-        public string Get(int Id, string PersonName, int HobbyId)
+        [ResponseType(typeof(HobbyPersonDto))]
+        public IHttpActionResult GetPerson(int Id)
         {
-            return PersonName;
+            HobbyPersonDto person = db.People.Include(p => p.Hobby)
+                .Where(p => p.Id == Id)
+                .Select(p => new HobbyPersonDto
+                {
+                    PersonId = p.Id,
+                    PersonName = p.PersonName,
+                    HobbyId = p.HobbyId,
+                    HobbyName = p.Hobby.HobbyName
+                })
+                .SingleOrDefault();
+                
+            if (person == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(person);
         }
-        
+
 
         // PUT: api/People/5
         [HttpPut]

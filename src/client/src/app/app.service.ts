@@ -6,18 +6,24 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class AppService {
-    apiUrl: string = 'http://localhost:53882/api/People';
+    apiUrl: string = 'http://localhost:53882/api';
 
     constructor(private _http: Http) { }
 
     public getPeople(): Observable<IPerson[]> {
-        return this._http.get(this.apiUrl).map((r) => {
+        return this._http.get(this.apiUrl + '/People').map((r) => {
             return r.json();
         });
     }
 
     public getHobbies(): Observable<IHobby[]> {
-        return this._http.get(this.apiUrl).map((r) => {
+        return this._http.get(this.apiUrl + '/Hobbies').map((r) => {
+            return r.json();
+        });
+    }
+
+    public getHobbiesPeople(): Observable<IHobbyPerson[]> {
+        return this._http.get(this.apiUrl + '/People').map((r) => {
             return r.json();
         });
     }

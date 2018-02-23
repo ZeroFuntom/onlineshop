@@ -16,7 +16,7 @@ namespace aspnetApplication
     {
         public int Id { get; set; }
         public string PersonName { get; set; }
-        public Nullable<int> HobbyId { get; set; }
+        public int HobbyId { get; set; }
     
         public virtual Hobby Hobby { get; set; }
     }

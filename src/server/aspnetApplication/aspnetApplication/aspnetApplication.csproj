@@ -214,6 +214,7 @@
       <DependentUpon>AdoNetAtosProject.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HobbyDto.cs" />
+    <Compile Include="Models\HobbyPersonDto.cs" />
     <Compile Include="Models\PersonDto.cs" />
     <Compile Include="Person.cs">
       <DependentUpon>AdoNetAtosProject.tt</DependentUpon>
