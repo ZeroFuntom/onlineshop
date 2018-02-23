@@ -10,14 +10,10 @@ import { defer as _defer } from 'lodash';
 import { error } from 'util';
 
 @Component({
-  moduleId: module.id,
-  // selector: 'app-persondetail',
   templateUrl: './persondetial.component.html',
   styleUrls: [`./persondetail.component.css`]
 })
 
 export class PersondetailComponent {
-
-
 
 }

@@ -1,22 +1,33 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
-import { PersondetailService } from './persondetail.service';
-import { PersondetailModule } from './persondetail.module';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from '@angular/http';
+import { PersondetailComponent } from './persondetail.component';
 
-describe('PersondetailService', () => {
-  beforeEach(() => {
+describe('PersondetailComponent', () => {
+  let component: PersondetailComponent;
+  let fixture: ComponentFixture<PersondetailComponent>;
+
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule,
-        PersondetailModule,
-      ],
+            HttpClientModule
+        ],
+      declarations: [
+          PersondetailComponent
+        ],
       providers: [
-        PersondetailService,
-      ],
-    });
+        ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(PersondetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should be created', inject([PersondetailService], (service: PersondetailService) => {
-    expect(service).toBeTruthy();
-  }));
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 });

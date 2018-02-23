@@ -1,11 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
-import { PersondetailRoutingModule } from './persondetail-routing.module';
 import { PersondetailComponent } from './persondetail.component';
 import { PersondetailService } from './persondetail.service';
+import { PersondetailRoutingModule } from './persondetail-routing.module';
 
 @NgModule({
   imports: [
-    PersondetailRoutingModule,
+    PersondetailRoutingModule
   ],
   declarations: [
     PersondetailComponent
