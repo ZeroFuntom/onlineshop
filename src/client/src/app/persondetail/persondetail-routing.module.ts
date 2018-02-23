@@ -8,7 +8,7 @@ import { PersondetailService } from './persondetail.service';
 
 const routes: Routes = [
   {
-    path: '',
+    path: '/Persondetail',
     component: PersondetailComponent,
   },
   {path: 'Persondetail', component: PersondetailComponent}
