@@ -21,10 +21,4 @@ export class AppService {
             return r.json();
         });
     }
-
-    public getHobbiesPeople(): Observable<IHobbyPerson[]> {
-        return this._http.get(this.apiUrl + '/People').map((r) => {
-            return r.json();
-        });
-    }
 }
