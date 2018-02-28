@@ -5,13 +5,13 @@ import { AppComponent } from './app.component';
 import { AppService } from './app.service';
 import { HttpModule } from '@angular/http';
 import { PersonListComponent } from './person-list/person-list.component';
-import { PersondetailComponent } from './person-detail/person-detail.component';
+import { PersonDetailComponent } from './person-detail/person-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonListComponent,
-    PersondetailComponent
+    PersonDetailComponent
   ],
   providers: [
     AppService
@@ -19,17 +19,16 @@ import { PersondetailComponent } from './person-detail/person-detail.component';
   imports: [
     BrowserModule,
     HttpModule,
-    RouterModule.forChild([
-      { path: '', redirectTo: 'list', pathMatch: 'full' },
+    RouterModule.forRoot([
       { path: 'list', component: PersonListComponent },
-      { path: 'detail/:id', component: PersondetailComponent }
-    ]),
-  ],
-  exports: [
-    RouterModule
+      { path: 'detail/:id', component: PersonDetailComponent },
+      { path: '', redirectTo: 'list', pathMatch: 'full' },
+    ],
+    { enableTracing: false }),
   ],
   bootstrap: [
     AppComponent
   ]
 })
+
 export class AppModule { }

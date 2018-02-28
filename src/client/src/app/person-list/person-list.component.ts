@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AppService } from '../app.service';
+import { AppModule } from '../app.module';
 
 @Component({
   templateUrl: 'person-list.component.html',
