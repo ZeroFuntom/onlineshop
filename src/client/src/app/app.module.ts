@@ -23,6 +23,7 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
       { path: 'list', component: PersonListComponent },
       { path: 'detail/:id', component: PersonDetailComponent },
       { path: '', redirectTo: 'list', pathMatch: 'full' },
+      { path: '**', redirectTo: 'list' }
     ],
     { enableTracing: false }),
   ],
