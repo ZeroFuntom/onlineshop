@@ -10,9 +10,14 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 export class PersonDetailComponent {
     public id: string;
+    public hobbylist: IHobby[];
 
-    public constructor(private route: ActivatedRoute) {
+    public constructor(private route: ActivatedRoute, appService: AppService) {
         this.route.paramMap.subscribe((params: ParamMap) =>
             this.id = params.get('id'));
+
+        appService.getHobbies().subscribe((hobbylist) => {
+            this.hobbylist = hobbylist;
+        });
     }
 }

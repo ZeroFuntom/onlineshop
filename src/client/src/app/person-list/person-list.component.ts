@@ -9,7 +9,7 @@ import { AppModule } from '../app.module';
 
 export class PersonListComponent {
 
-  public hobbylist: IHobby[];
+  // public hobbylist: IHobby[];
   public list: IPerson[];
 
   constructor(appService: AppService) {
@@ -17,9 +17,9 @@ export class PersonListComponent {
       this.list = list;
     }).subscribe();
 
-    appService.getHobbies().do((hobbylist) => {
-      this.hobbylist = hobbylist;
-    }).subscribe();
+    // appService.getHobbies().do((hobbylist) => {
+    //   this.hobbylist = hobbylist;
+    // }).subscribe();
   }
 
 }
