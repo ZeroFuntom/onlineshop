@@ -1,7 +1,11 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -12,6 +16,24 @@ namespace aspnetApplication.Controllers
     public class HobbiesController : ApiController
     {
         private AtosProjektServerEntities2 db = new AtosProjektServerEntities2();
+
+        // Repository
+        interface repository
+        {
+            IEnumerable<Hobby> GetAll();
+            Hobby Get(int Id);
+            Hobby Add(Hobby hobby);
+            void Remove(int id);
+            bool Update(Hobby hobby);
+        }
+
+        // only for select method
+        private static readonly Expression<Func<Hobby, HobbyDto>> AsHobbyDto =
+            h => new HobbyDto
+            {
+                Id = h.Id,
+                HobbyName = h.HobbyName
+            };
 
         // GET: api/Hobbies
         [HttpGet]
@@ -26,11 +48,14 @@ namespace aspnetApplication.Controllers
         }
 
         // GET: api/Hobbies/5
-        [HttpGet]
+        // [HttpGet]
         [ResponseType(typeof(Hobby))]
-        public async Task<IHttpActionResult> GetHobbies(int id)
+        public async Task<IHttpActionResult> GetHobby(int id)
         {
-            Hobby hobby = await db.Hobbies.FindAsync(id);
+            HobbyDto hobby = await db.Hobbies.Include(h => h.HobbyName)
+                .Where(h => h.Id == id)
+                .Select(AsHobbyDto)
+                .FirstOrDefaultAsync();
             if (hobby == null)
             {
                 return NotFound();
