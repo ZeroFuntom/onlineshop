@@ -35,7 +35,7 @@ namespace aspnetApplication.Controllers
                 HobbyName = h.HobbyName
             };
 
-        // GET: api/Hobbies
+        // GET: api/Hobbies /
         [HttpGet]
         [ResponseType(typeof(PersonDto))]
         public IQueryable<HobbyDto> GetHobbies()
@@ -47,7 +47,7 @@ namespace aspnetApplication.Controllers
             });
         }
 
-        // GET: api/Hobbies/5
+        // GET: api/Hobbies/5 /
         // [HttpGet]
         [ResponseType(typeof(Hobby))]
         public async Task<IHttpActionResult> GetHobby(int id)
@@ -119,19 +119,23 @@ namespace aspnetApplication.Controllers
         // DELETE: api/Hobbies/5
         [HttpDelete]
         [ResponseType(typeof(Hobby))]
-        public async Task<IHttpActionResult> DeleteHobby(int id)
+        public IHttpActionResult DeleteHobby(int id)
         {
-            Hobby hobby = await db.Hobbies.FindAsync(id);
-            if (hobby == null)
+            if (id <= 0)
+                return BadRequest("Not valid");
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return NotFound();
+                var HobbyName = ctx.Hobbies
+                    .Where(h => h.Id == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(HobbyName).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
             }
 
-            db.Hobbies.Remove(hobby);
-            await db.SaveChangesAsync();
-
-            return Ok(hobby);
+            return Ok();
         }
+
 
         protected override void Dispose(bool disposing)
         {
