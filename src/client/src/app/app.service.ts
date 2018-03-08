@@ -16,6 +16,12 @@ export class AppService {
         });
     }
 
+    public getPerson(id: number): Observable<IPerson> {
+        return this._http.get(this.apiUrl + '/People/' + id).map((r) => {
+            return r.json();
+        });
+    }
+
     public getHobbies(): Observable<IHobby[]> {
         return this._http.get(this.apiUrl + '/Hobbies').map((r) => {
             return r.json();

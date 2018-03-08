@@ -1,4 +1,22 @@
-Hello
-{{ id }}
-<!-- <h1>{{ person.PersonName }}</h1> -->
-{{ getHobby }}
+ID:
+    {{ id }} 
+<br/>
+
+Name:
+    <input type="text" value="{{ person?.PersonName }}">
+<br/>
+
+Hobby:
+    <input type="text" value="{{ getHobby }}">
+<br/>
+
+<button [routerLink]="['/list']" id="backbutton">
+    back
+</button>
+
+
+<div *ngIf="isBusy" class="loading">
+    Loading data...
+</div>
+
+<div ng-bind-html="inputText" contenteditable="true" ng-model="inputText" cols="50" rows="10"></div>

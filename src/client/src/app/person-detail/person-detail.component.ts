@@ -10,19 +10,36 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 export class PersonDetailComponent {
     public id: number;
-    public hobbylist: IHobby[];
+
+    public isBusyHobby: boolean = true;
+    public isBusyPerson: boolean = true;
+
+    public person: IPerson;
+    public hobbylist: IHobby[] = [];
 
     public constructor(private route: ActivatedRoute, appService: AppService) {
         this.route.paramMap.subscribe((params: ParamMap) =>
             this.id = +params.get('id'));
 
+        appService.getPerson(this.id).subscribe((person) => {
+            this.person = person;
+            this.isBusyPerson = false;
+        });
         appService.getHobbies().subscribe((hobbylist) => {
             this.hobbylist = hobbylist;
+            this.isBusyHobby = false;
         });
+    }
+
+    public get isBusy(): boolean {
+        return this.isBusyHobby || this.isBusyPerson;
     }
 
     public get getHobby(): string {
        const hobby = this.hobbylist.find( h => h.Id === this.id );
-       return hobby.HobbyName;
+       if (hobby !== undefined) {
+           return hobby.HobbyName;
+       }
+       return 'Ooops, nichts gefunden';
     }
 }

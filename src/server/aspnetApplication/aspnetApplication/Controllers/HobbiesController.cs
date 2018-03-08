@@ -46,7 +46,7 @@ namespace aspnetApplication.Controllers
 
         // GET: api/Hobbies/5 /
         [HttpGet]
-        [ResponseType(typeof(Hobby))]
+        [ResponseType(typeof(HobbyDto))]
         public async Task<IHttpActionResult> GetHobby(int id)
         {
             HobbyDto hobby = await db.Hobbies.Include(h => h.HobbyName)

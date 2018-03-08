@@ -40,3 +40,12 @@ div {
     font-size: 30px;
     background: #f6f6f6;
   }
+
+  .loading{
+    background-color: green;
+  }
+
+  #backbutton{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
