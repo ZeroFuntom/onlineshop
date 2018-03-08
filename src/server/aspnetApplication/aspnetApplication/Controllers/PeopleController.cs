@@ -1,8 +1,8 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Net;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -14,8 +14,27 @@ namespace aspnetApplication.Controllers
     {
         private AtosProjektServerEntities2 db = new AtosProjektServerEntities2();
 
+        //Repository
+        interface repository
+        {
+            IEnumerable<Person> GetAll();
+            Person Get(int Id);
+            Person Add(Hobby hobby);
+            void Remove(int id);
+            bool Update(Hobby hobby);
+        }
+
+        // only for select method
+        private static readonly Expression<Func<Person, PersonDto>> AsPersonDto =
+            p => new PersonDto
+            {
+                Id = p.Id,
+                PersonName = p.PersonName
+            };
+
         // GET: api/People
         [HttpGet]
+        [ResponseType(typeof(HobbyDto))]
         public IQueryable<PersonDto> GetPeople()
         {
             return db.People.Select(p => new PersonDto
@@ -29,19 +48,12 @@ namespace aspnetApplication.Controllers
         // GET: api/People/5
         [HttpGet]
         [ResponseType(typeof(HobbyPersonDto))]
-        public IHttpActionResult GetPerson(int Id)
+        public async Task<IHttpActionResult> GetPerson(int id)
         {
-            HobbyPersonDto person = db.People.Include(p => p.Hobby)
-                .Where(p => p.Id == Id)
-                .Select(p => new HobbyPersonDto
-                {
-                    PersonId = p.Id,
-                    PersonName = p.PersonName,
-                    HobbyId = p.HobbyId,
-                    HobbyName = p.Hobby.HobbyName
-                })
-                .SingleOrDefault();
-                
+            PersonDto person = await db.People.Include(h => h.PersonName)
+                .Where(p => p.Id == id)
+                .Select(AsPersonDto)
+                .FirstOrDefaultAsync();
             if (person == null)
             {
                 return NotFound();
@@ -54,70 +66,70 @@ namespace aspnetApplication.Controllers
         // PUT: api/People/5
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutPerson(int id, Person person)
+        public IHttpActionResult PutPerson(Person person)
         {
             if (!ModelState.IsValid)
+                return BadRequest("Invalid model");
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return BadRequest(ModelState);
-            }
+                var existingPerson = ctx.People.Where(p => p.Id == person.Id)
+                    .FirstOrDefault<Person>();
 
-            if (id != person.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(person).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PersonExists(id))
+                if (existingPerson != null)
                 {
-                    return NotFound();
+                    existingPerson.Id = person.Id;
+                    existingPerson.PersonName = person.PersonName;
+
+                    ctx.SaveChanges();
                 }
                 else
                 {
-                    throw;
+                    return NotFound();
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         // POST: api/People
         [HttpPost]
         [ResponseType(typeof(Person))]
-        public async Task<IHttpActionResult> PostPerson(Person person)
+        public IHttpActionResult PostPerson(Person person)
         {
             if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return BadRequest(ModelState);
+                ctx.People.Add(new Person()
+                {
+                    Id = person.Id,
+                    PersonName = person.PersonName
+                });
+
+                ctx.SaveChanges();
             }
 
-            db.People.Add(person);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = person.Id }, person);
+            return Ok();
         }
 
         // DELETE: api/People/5
         [HttpDelete]
         [ResponseType(typeof(Person))]
-        public async Task<IHttpActionResult> DeletePerson(int id)
+        public IHttpActionResult DeletePerson(int id)
         {
-            Person person = await db.People.FindAsync(id);
-            if (person == null)
+            if (id <= 0)
+                return BadRequest("Not valid");
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return NotFound();
+                var PersonName = ctx.People
+                    .Where(p => p.Id == id)
+                    .FirstOrDefault();
+
+                ctx.Entry(PersonName).State = System.Data.Entity.EntityState.Deleted;
+                ctx.SaveChanges();
             }
 
-            db.People.Remove(person);
-            await db.SaveChangesAsync();
-
-            return Ok(person);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

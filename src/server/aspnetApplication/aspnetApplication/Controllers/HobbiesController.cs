@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
@@ -48,7 +45,7 @@ namespace aspnetApplication.Controllers
         }
 
         // GET: api/Hobbies/5 /
-        // [HttpGet]
+        [HttpGet]
         [ResponseType(typeof(Hobby))]
         public async Task<IHttpActionResult> GetHobby(int id)
         {
@@ -67,53 +64,50 @@ namespace aspnetApplication.Controllers
         // PUT: api/Hobbies/5
         [HttpPut]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutHobby(int id, Hobby hobby)
+        public IHttpActionResult PutHobby (Hobby hobby)
         {
             if (!ModelState.IsValid)
+                return BadRequest("Invalid model");
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return BadRequest(ModelState);
-            }
+                var existingHobby = ctx.Hobbies.Where(h => h.Id == hobby.Id)
+                    .FirstOrDefault<Hobby>();
 
-            if (id != hobby.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(hobby).State = EntityState.Modified;
-
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!HobbyExists(id))
+                if (existingHobby != null)
                 {
-                    return NotFound();
+                    existingHobby.Id = hobby.Id;
+                    existingHobby.HobbyName = hobby.HobbyName;
+
+                    ctx.SaveChanges();
                 }
                 else
                 {
-                    throw;
+                    return NotFound();
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok();
         }
 
         // POST: api/Hobbies
         [HttpPost]
         [ResponseType(typeof(Hobby))]
-        public async Task<IHttpActionResult> PostHobby(Hobby hobby)
+        public IHttpActionResult PostHobby(Hobby hobby)
         {
             if (!ModelState.IsValid)
+                return BadRequest("Invalid data.");
+
+            using (var ctx = new AtosProjektServerEntities2())
             {
-                return BadRequest(ModelState);
+                ctx.Hobbies.Add(new Hobby()
+                {
+                    Id = hobby.Id,
+                    HobbyName = hobby.HobbyName
+                });
+
+                ctx.SaveChanges();
             }
 
-            db.Hobbies.Add(hobby);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = hobby.Id }, hobby);
+            return Ok();
         }
 
         // DELETE: api/Hobbies/5
