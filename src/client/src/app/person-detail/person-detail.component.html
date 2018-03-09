@@ -16,11 +16,10 @@ Hobby:
     save
 </button>
 
-<button [routerLink]="['/list']" id="backbutton">
-    back
-</button>
-
-
 <div *ngIf="isBusy" class="loading">
     Loading data...
 </div>
+
+<button [routerLink]="['/list']" id="backbutton">
+    back
+</button>

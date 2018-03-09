@@ -42,4 +42,6 @@ export class PersonDetailComponent {
        }
        return 'Ooops, nichts gefunden';
     }
+
+    // PUT (Update)
 }

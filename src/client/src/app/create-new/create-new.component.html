@@ -2,10 +2,12 @@
 <br>
 
 Name:
-    <input type="text">
+    <input type="text" [(ngModel)]="CreateNewPerson" name="NewPerson">
 <br>
 Hobby:
-    <input type="text">
+    <input type="text" [(ngModel)]="CreateNewHobby" name="NewHobby">
 <br>
 
-<button>Save</button>
+<button (click)="saveValue()">Save</button>
+
+{{ clickMessage }}

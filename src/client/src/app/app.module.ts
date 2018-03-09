@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterModule, Router, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
@@ -20,6 +21,7 @@ import { CreateNewComponent } from './create-new/create-new.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     RouterModule.forRoot([
       { path: 'list', component: PersonListComponent },
